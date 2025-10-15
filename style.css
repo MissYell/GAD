@@ -1,0 +1,289 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif; 
+}
+
+
+    body {
+      background: url('img/loginpage.svg') no-repeat;
+      width: 100vw;
+      height: 100vh;
+      background-size: cover;
+      font-family: Arial, Helvetica, sans-serif; 
+      }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+
+
+    .content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+    }
+
+    .logo {
+      display: flex;
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      top: 20px;
+      left: 40px;
+    }
+
+
+    .logo-text {
+      position: fixed;
+      left: 140px;
+      top: 55px;
+      font-size: 15px;
+      font-weight: 100;
+      color: black;
+    }
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 110px;
+    }
+
+    .title {
+      font-size: 30px;
+      margin-bottom: 10px;
+      text-align: center;
+      animation: fadeIn 1s;
+    }
+
+    .divider {
+      width: 60%;
+      height: 1px;
+      background-color: #ccc;
+      margin: 15px 0;
+      animation: expandWidth 1s;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #333;
+      text-align: center;
+      max-width: 800px;
+      margin-bottom: 30px;
+      animation: fadeIn 1.2s;
+    }
+
+
+    .form {
+      width: 100%;
+      max-width: 600px;
+      animation: fadeIn 1.6s;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    .form-group {
+      flex: 1;
+      margin-bottom: 10px;
+    }
+
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: border 0.3s;
+    }
+
+    .form-control:focus {
+      border-color: #7b3baf;
+      outline: none;
+    }
+
+    .select-wrapper {
+      position: relative;
+    }
+
+    .select-wrapper select {
+      appearance: none;
+      padding-right: 30px; 
+    }
+
+    .select-wrapper::after {
+      content: '▼';
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      color: #7b3baf;
+      font-size: 12px;
+      pointer-events: none;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 15px;
+      background-color: #7b3baf;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #6a32a0;
+    }
+
+    .form-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .checkbox-group input {
+      margin-right: 8px;
+    }
+
+    .link {
+      color: #7b3baf;
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+
+    .link:hover {
+      opacity: 0.8;
+    }
+
+    .center-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    #loginPage {
+      position: fixed;
+      top: 160px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    #forgotPasswordPage {
+      position: fixed;
+      top: 160px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .message-box {
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      font-size: 14px;
+      animation: fadeIn 1.2s;
+      width: 100%;
+      text-align: center;
+    }
+
+    .message-box.info {
+      background-color: rgba(123, 59, 175, 0.1);
+      border: 1px solid rgba(123, 59, 175, 0.3);
+      color: #7b3baf;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      width: 100%;
+    }
+
+    .btn-secondary {
+      width: 100%;
+      padding: 15px;
+      background-color: transparent;
+      color: #7b3baf;
+      border: 1px solid #7b3baf;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(123, 59, 175, 0.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes expandWidth {
+      from { width: 0; }
+      to { width: 60%; }
+    }
+
+    @media screen and (max-width: 992px) {
+      .form {
+          max-width: 90%;
+      }
+      
+      .logo {
+          width: 80px;
+          height: 80px;
+          top: 15px;
+          left: 20px;
+      }
+      
+      .logo-text {
+          left: 110px;
+          top: 45px;
+          font-size: 14px;
+      }
+
+      .main {
+          margin-top: 80px;
+      }
+
+      #loginPage, #forgotPasswordPage {
+          margin-top: 80px;
+      }
+    }
+
+    
+    

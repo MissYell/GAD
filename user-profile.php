@@ -1,0 +1,294 @@
+<?php
+session_start();
+include 'db_connection.php';
+// $servername = "localhost";
+// $username = "root";
+// $password = ""; // or your password
+// $dbname = "gad_dbms";
+
+
+// Check connection
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+    die("Connection failed: " .$conn->connect_error);
+}
+
+
+
+//if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
+    //header("Location: login.php?error=Unauthorized access");
+    //exit();
+
+
+
+$userID = ($_SESSION['user_id']);
+
+?>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<link rel="stylesheet" href="endUser.css">
+    <link rel ="stylesheet" href="globalstyles.css">
+    <link rel="stylesheet" href="editProfile.css">
+    <title>GAD End-User Dashboard</title>
+
+        
+</head>
+<body style="margin:0; padding:0; box-sizing:border-box; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color:#f8fafc; color:#334155; line-height:1.5;">
+    <div class="container" style="margin:0 auto; padding:20px; box-sizing:border-box;">
+        <div class="header">
+              <div class="logo">
+                <div class="logo-icon">
+                    <img src="img/logo.svg" alt="GAD Logo" width="80" height="80">
+                </div>
+                
+            </div>
+            <div class="header-actions">
+                <div class="header-icon-container">
+                    <button class="icon-button" title="Profile">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#8458B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="#8458B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <span class="header-icon-text"></span>
+                </div>
+                <div class="header-icon-container">
+                    <button class="icon-button" id="notification-button" title="Notifications">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 8C18 6.4087 17.3679 4.88258 16.2426 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.88258 2.63214 7.75736 3.75736C6.63214 4.88258 6 6.4087 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z" stroke="#8458B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M13.73 21C13.5542 21.3031 13.3019 21.5547 12.9982 21.7295C12.6946 21.9044 12.3504 21.9965 12 21.9965C11.6496 21.9965 11.3054 21.9044 11.0018 21.7295C10.6982 21.5547 10.4458 21.3031 10.27 21" stroke="#8458B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <span class="header-icon-text"></span>
+                </div>
+                <div class="header-icon-container">
+                    <button class="icon-button" id="menu-button" title="Log out">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="#8458B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 17L21 12L16 7" stroke="#8458B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 12H9" stroke="#8458B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <span class="header-icon-text"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="subheader-container">
+            <div class="subheader-header">
+                <div class="header-left">
+                    <a href="enduser.php" class="back-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="#333333"/>
+                        </svg>
+                    </a>
+                    <div class="subheader-title">Edit Profile</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-popup" id="menu-popup">
+            <div class="menu-item" id="logout-btn">Log out</div>
+        </div>
+    
+        <div class="notification-popup" id="notification-popup">
+            <div class="notification-header">
+                <div class="notification-title">Notifications</div>
+                <button class="mark-read" id="mark-read-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17L4 12" stroke="#8458B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Mark all as read
+                </button>
+            </div>
+            
+        <div class="notification-list" id="notification-list">
+            <div class="notification-item">
+                <p class="notification-text"></p>
+                <a class="notification-link"></a>
+            </div>
+            <div class="notification-item">
+                <p class="notification-text"></p>
+                <a class="notification-link"></a>
+            </div>
+            <div class="notification-item">
+                <p class="notification-text"></p>
+                <a class="notification-link"></a>
+            </div>
+        </div>
+        <div class="empty-notifications" id="empty-notifications">
+            No new notifications
+        </div>
+    </div>
+    
+    <div class="logout-modal" id="logout-modal">
+        <div class="logout-modal-icon">
+            <svg width="40" height="40" viewBox="0 0 s40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 35H8.33333C7.44928 35 6.60143 34.6488 5.97631 34.0237C5.35119 33.3986 5 32.5507 5 31.6667V8.33333C5 7.44928 5.35119 6.60143 5.97631 5.97631C6.60143 5.35119 7.44928 5 8.33333 5H15" stroke="#8458B3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M26.6667 28.3333L35 20L26.6667 11.6667" stroke="#8458B3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M35 20H15" stroke="#8458B3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <h3 class="logout-modal-title">Confirm Logout</h3>
+        <p class="logout-modal-text">Are you sure you want to log out?</p>
+        <div class="logout-modal-buttons">
+            <button class="logout-cancel-btn" id="logout-cancel-btn">Cancel</button>
+            <button class="logout-confirm-btn" id="logout-confirm-btn">Log Out</button>
+        </div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Profile Content -->
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-info">
+                <div class="profile-avatar" id="profileAvatar">
+                    <input type="file" class="avatar-file-input" id="avatarInput" accept="image/*">
+                    <img id="avatarImage" style="display: none;">
+                    <svg id="defaultAvatar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                    <div class="avatar-upload-overlay">
+                        <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                        </svg>
+                        <div class="upload-text">Upload Photo</div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="profile-name">Aila Molina</h2>
+                    <p class="profile-email">cggmolina@usep.edu.ph</p>
+                </div>
+            </div>
+            <button class="edit-btn" id="editProfileBtn">Edit</button>
+        </div>
+
+        <!-- Profile Details -->
+        <div class="profile-details">
+            <div class="detail-item">
+                <div class="detail-label">Full Name</div>
+                <div class="detail-value">Molina, Cheruvim Gabrielle G.</div>
+            </div>
+
+            <div class="detail-item">
+                <div class="detail-label">Department</div>
+                <div class="detail-value">CIC- College of Information and Computing</div>
+            </div>
+
+
+            <div class="detail-item">
+                <div class="detail-label">My email Address</div>
+                <div class="email-container">
+                    <div class="email-item">
+                        <div class="email-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </div>
+                        <div class="email-text">
+                            <div>cggmolina@usep.edu.ph</div>
+                            <div class="email-date">1 month ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Upload Modal -->
+    <div class="modal-overlay" id="photoModal">
+        <div class="photo-modal">
+            <div class="modal-header">
+                <div class="modal-title">Profile Photo</div>
+                <button class="close-btn" id="closePhotoModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="photo-preview" id="photoPreview">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </div>
+                <div class="upload-buttons">
+                    <button class="upload-btn" id="selectPhotoBtn">Select Photo</button>
+                    <button class="remove-btn" id="removePhotoBtn">Remove Photo</button>
+                </div>
+                <input type="file" class="photo-file-input" id="photoInput" accept="image/*">
+            </div>
+            <div class="modal-footer">
+                <button class="save-btn" id="savePhotoBtn">Save Photo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title" style="width:100%; text-align:center;">Edit profile</div>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editProfileForm">
+                    <div class="three-col-grid">
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" value="Molina">
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" id="firstName" value="Cheruvim Gabrielle">
+                        </div>
+                        <div class="form-group">
+                            <label for="middleInitial">M.I</label>
+                            <input type="text" class="form-control" id="middleInitial" value="G">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" value="cggmolina@usep.edu.ph">
+                    </div>
+                    
+                     <div class="form-group-usermgt">
+                    <label for="department">Department</label>
+                    <select class="form-select-usermgt" id="department">
+                        <option selected disabled>Select Department</option>
+                        <option value="CAS">CAS - College of Arts and Sciences</option>
+                        <option value="CED">CED - College of Education</option>
+                        <option value="CoE">CoE - College of Engineering</option>
+                        <option value="CIC">CIC - College of Information and Computing</option>
+                        <option value="CBA">CBA - College of Business Administration</option>
+                        <option value="CAEc">CAEc - College of Applied Economics</option>
+                        <option value="CoT">CT - College of Technology</option>
+                    </select>
+                </div>
+
+                    
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" value="••••••••••••••••">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Re-enter password:</label>
+                        <input type="password" class="form-control" id="confirmPassword" value="••••••••••••••••">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="save-btn" id="saveBtn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="endUbaseUI.js"></script>
+    <script src="userEdit-modal.js"> </script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+Array
+(
+)
+Array
+(
+)
+Array
+(
+    [papsID] => PAPS7032
+    [score] => Array
+        (
+            [TEST1] => 0.50
+            [TEST1-1] => 1.00
+            [TEST2] => 2.00
+            [TEST3] => 1.00
+            [TEST3-1] => 1.00
+            [TEST4] => 2.00
+            [TEST5] => 2.00
+            [TEST6] => 0.67
+            [TEST6-1] => 0.67
+            [TEST6-2] => 0.67
+        )
+
+)
+Array
+(
+    [papsID] => PAPS7032
+    [score] => Array
+        (
+            [TEST1] => 0.50
+            [TEST1-1] => 1.00
+            [TEST2] => 2.00
+            [TEST3] => 1.00
+            [TEST3-1] => 1.00
+            [TEST4] => 2.00
+            [TEST5] => 2.00
+            [TEST6] => 0.67
+            [TEST6-1] => 0.67
+            [TEST6-2] => 0.67
+        )
+
+)
+Array
+(
+)

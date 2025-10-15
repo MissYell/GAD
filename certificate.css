@@ -1,0 +1,217 @@
+
+        .university-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .university-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        
+        .university-details {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .proposal-info {
+            text-align: left;
+            margin: 0 40px 20px;
+        }
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #333;
+            min-width: 200px;
+            margin-right: 20px;
+        }
+        
+        .info-value {
+            color: #555;
+            flex: 1;
+        }
+        
+        .score-table {
+            width: 100%;
+            margin: 40px auto 40px;
+            border-collapse: collapse;
+            border: 2px solid #333;
+        }
+        
+        .score-table th,
+        .score-table td {
+            border: 1px solid #333;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .score-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .score-cell {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            width: 150px;
+        }
+        
+        .interpretation-cell {
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .generate-btn {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .generate-btn:hover {
+            background: linear-gradient(135deg, #7d3c98, #8e44ad);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(142, 68, 173, 0.3);
+        }
+        
+        .btn-container {
+            text-align: right;
+            margin-right: 40px;
+        }
+
+        .certificate-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+
+        .project-title {
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .signature-section {
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .signature-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .signature-text {
+            font-size: 14px;
+            color: #8458B3;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .signature-line {
+            width: 200px;
+            height: 2px;
+            background: #333;
+            margin-bottom: 5px;
+        }
+
+        .signature-name {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 100px;
+            color: rgba(132, 88, 179, 0.1);
+            font-weight: bold;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .certificate-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .download-section {
+            padding: 20px 40px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            text-align: right;
+        }
+
+        .download-btn {
+            background: #8458B3;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #6d4a94;
+        }
+
+
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .header, .subheader, .download-section {
+                display: none;
+            }
+            
+            .certificate-container {
+                box-shadow: none;
+                margin: 0;
+                max-width: none;
+            }
+        }
+
+        .date-info {
+            font-size: 14px;
+            color: #666;
+            margin-top: 30px;
+        }
